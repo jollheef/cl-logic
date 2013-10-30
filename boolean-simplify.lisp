@@ -9,14 +9,6 @@
 (defun boolean-terms (vector)
   (remove nil (loop for i in vector for n from 0 collect (if i n))))
 
-(defun boolean-simplify-raw (function)
-  (quine-mccluskey:quine-mccluskey
-   (concatenate
-    'string
-    (loop for i from 0 repeat (nvars function)
-       collect (char+ #\a i)))
-   (boolean-terms (result-vector function))))
-
 (defun convert-raw-string-to-boolean (raw-string)
   (append '(∧) (loop for i across raw-string
 		  for n from 0 collect
@@ -28,7 +20,21 @@
   (loop for disj in raw-list
      collect (remove nil (convert-raw-string-to-boolean disj))))
 
-(defun boolean-simplify (function)
+(defun boolean-simplify-raw (result-vector)
+  (quine-mccluskey:quine-mccluskey
+   (concatenate
+    'string
+    (loop for i from 0 repeat (log (length result-vector) 2)
+       collect (char+ #\a i)))
+   (boolean-terms result-vector)))
+
+(defun boolean-simplify-vector (vector)
+  (if (numberp (car vector))
+      (setf vector
+	    (map 'list (lambda (x) (if (equalp x 1) t nil)) vector)))
   (prefix->infix
    (append '(∨) (convert-raw-list-to-boolean
-		 (nth-value 1 (boolean-simplify-raw function))))))
+		 (nth-value 1 (boolean-simplify-raw vector))))))
+
+(defun boolean-simplify (function)
+  (boolean-simplify-vector (result-vector function)))

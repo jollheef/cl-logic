@@ -7,3 +7,8 @@
 (defpackage #:cl-logic
   (:use #:cl)
   (:export #:infix->prefix))
+
+(defpackage #:quine-mccluskey
+  (:nicknames "qm")
+  (:use #:cl)
+  (:export #:quine-mccluskey))

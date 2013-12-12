@@ -24,6 +24,10 @@
 
 (defun ↓ (p q) "Стрелка Пирса, u2193" (not (or p q)))
 
+(defun ∀ (p list) "Предикат всеобщности" (every p list))
+
+(defun ∃ (p list) "Предикат существования" (some p list))
+
 (defun help-operators ()
   (format t "¬~%∧~%∨~%→~%⊕~%∼~%↑~%↓~%")
   (format t "¬ \\uac~%")

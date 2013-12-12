@@ -35,3 +35,13 @@
 (defun equivalent (functions)
   (apply 'equalp (map 'list (lambda (func) (result-vector func))
 		      functions)))
+
+(defun general-validity-p (function)
+  (let ((result-vector (result-vector function)))
+    (equalp (length result-vector)
+	    (apply '+ (map 'list 'bool->int result-vector)))))
+
+(defun tautology (functions)
+  (if (listp functions)
+      (equivalent functions))
+  (general-validity-p functions))

@@ -9,7 +9,8 @@
   :description "Boolean algebra package"
   :author "Mikhail Klementyev <jollheef@riseup.net>"
   :license "GNU GPLv3"
-  :depends-on (:quine-mccluskey)
+  :depends-on (:quine-mccluskey
+	       :alexandria)
   :components ((:static-file "COPYING")
 	       (:file "package")
 	       (:file "cl-logic" :depends-on ("package"))
@@ -21,7 +22,8 @@
 	       (:file "form" :depends-on ("package"))
 	       (:file "bool-structs" :depends-on ("package"))
 	       (:file "boolean-simplify" :depends-on ("package"))
-	       (:file "random-bool" :depends-on ("package"))))
+	       (:file "random-bool" :depends-on ("package"))
+	       (:file "combinator" :depends-on ("package"))))
 
 (asdf:defsystem :quine-mccluskey
     :author ("Ritchie Cai")

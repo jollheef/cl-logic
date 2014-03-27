@@ -46,3 +46,6 @@
 (defun boolean-list->binary-str (list)
   (apply 'strcat (loop for i in list collect
 		      (if i "1" "0"))))
+
+(defun int->bool-bin-list (n)
+  (mapcar 'bool->int (int->bool-list n)))

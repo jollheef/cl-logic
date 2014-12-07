@@ -10,7 +10,8 @@
   :author "Mikhail Klementyev <jollheef@riseup.net>"
   :license "GNU GPLv3"
   :depends-on (:quine-mccluskey
-	       :alexandria)
+	       :alexandria
+	       #+sbcl :sb-introspect)
   :components ((:static-file "COPYING")
 	       (:file "package")
 	       (:file "cl-logic" :depends-on ("package"))
